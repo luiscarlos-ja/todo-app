@@ -1,7 +1,11 @@
-import './App.css'
+import { Todos } from './components/Todos'
 
 function App(): JSX.Element {
-  return <h1>TODO App</h1>
+  return (
+    <div className="todoapp">
+      <Todos />
+    </div>
+  )
 }
 
 export default App
