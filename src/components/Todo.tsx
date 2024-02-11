@@ -6,7 +6,7 @@ interface Props {
 }
 
 export const Todo: React.FC<Props> = ({ todo }) => {
-  const { removeTodo, toggleCompleted } = useTodos()
+  const { handleCompleted, handleRemove } = useTodos()
 
   return (
     <div className="view">
@@ -14,10 +14,17 @@ export const Todo: React.FC<Props> = ({ todo }) => {
         className="toggle"
         type="checkbox"
         checked={todo.completed}
-        onChange={() => toggleCompleted({ id: todo.id })}
+        onChange={(e) => {
+          handleCompleted(todo.id, e.target.checked)
+        }}
       />
       <label>{todo.title}</label>
-      <button className="destroy" onClick={() => removeTodo({ id: todo.id })} />
+      <button
+        className="destroy"
+        onClick={() => {
+          handleRemove(todo.id)
+        }}
+      />
     </div>
   )
 }
