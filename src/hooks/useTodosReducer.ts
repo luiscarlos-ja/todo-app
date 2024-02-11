@@ -1,8 +1,8 @@
 import { useEffect, useReducer } from 'react'
 import { TODO_FILTERS } from '../consts'
-// import { fetchTodos, updateTodos } from '../services/todos'
 import { type FilterValue, type TodosReducer } from '../types'
 import { initialState, reducer } from '../reducers/todos'
+import { fetchTodos, updateTodos } from '../services/todos'
 
 export const useTodosReducer = (): TodosReducer => {
   const [{ sync, todos, filterSelected }, dispatch] = useReducer(
@@ -64,16 +64,20 @@ export const useTodosReducer = (): TodosReducer => {
   const activeCount = todos.length - completedCount
 
   useEffect(() => {
-    // fetchTodos()
-    //   .then(todos => {
-    //     dispatch({ type: 'INIT_TODOS', payload: { todos } })
-    //   })
-    //   .catch(err => { console.error(err) })
+    fetchTodos()
+      .then((todos) => {
+        dispatch({ type: 'INIT_TODOS', payload: { todos } })
+      })
+      .catch((err) => {
+        console.error(err)
+      })
   }, [])
 
   useEffect(() => {
     if (sync) {
-      //   updateTodos({ todos }).catch(err => { console.error(err) })
+      updateTodos({ todos }).catch((err) => {
+        console.error(err)
+      })
     }
   }, [todos, sync])
 
