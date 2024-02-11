@@ -1,4 +1,4 @@
-import { type TODO_FILTERS } from './consts'
+import { type TODOS_ACTION_TYPES, type TODO_FILTERS } from './consts'
 
 export interface Todo {
   id: string
@@ -24,3 +24,5 @@ export interface TodosReducer {
 
 export type FilterValue = (typeof TODO_FILTERS)[keyof typeof TODO_FILTERS]
 export type TodoList = Todo[]
+export type TodoActionType =
+  (typeof TODOS_ACTION_TYPES)[keyof typeof TODOS_ACTION_TYPES]

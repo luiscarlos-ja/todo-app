@@ -1,4 +1,4 @@
-import { TODO_FILTERS } from '../consts'
+import { TODO_FILTERS, type TODOS_ACTION_TYPES } from '../consts'
 import { type FilterValue, type TodoList } from '../types'
 
 export const initialState = {
@@ -33,13 +33,22 @@ export const initialState = {
 }
 
 type Action =
-  | { type: 'INIT_TODOS'; payload: { todos: TodoList } }
-  | { type: 'CLEAR_COMPLETED' }
-  | { type: 'COMPLETED'; payload: { id: string; completed: boolean } }
-  | { type: 'FILTER_CHANGE'; payload: { filter: FilterValue } }
-  | { type: 'REMOVE'; payload: { id: string } }
-  | { type: 'SAVE'; payload: { title: string } }
-  | { type: 'UPDATE_TITLE'; payload: { id: string; title: string } }
+  | { type: typeof TODOS_ACTION_TYPES.INIT_TODOS; payload: { todos: TodoList } }
+  | { type: typeof TODOS_ACTION_TYPES.CLEAR_COMPLETED }
+  | {
+      type: typeof TODOS_ACTION_TYPES.COMPLETED
+      payload: { id: string; completed: boolean }
+    }
+  | {
+      type: typeof TODOS_ACTION_TYPES.FILTER_CHANGE
+      payload: { filter: FilterValue }
+    }
+  | { type: typeof TODOS_ACTION_TYPES.REMOVE; payload: { id: string } }
+  | { type: typeof TODOS_ACTION_TYPES.SAVE; payload: { title: string } }
+  | {
+      type: typeof TODOS_ACTION_TYPES.UPDATE_TITLE
+      payload: { id: string; title: string }
+    }
 
 interface State {
   sync: boolean
