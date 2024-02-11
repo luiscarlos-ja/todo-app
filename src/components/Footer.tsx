@@ -2,13 +2,7 @@ import { useTodos } from '../hooks/useTodos'
 import { Filters } from './Filters'
 
 export function Footer(): JSX.Element {
-  const {
-    activeCount,
-    filterSelected,
-    handleFilterChange,
-    completedCount,
-    handleClearCompleted
-  } = useTodos()
+  const { activeCount, completedCount, handleClearCompleted } = useTodos()
   const activeTodoWord = activeCount === 1 ? 'task' : 'tasks'
 
   return (
@@ -17,10 +11,7 @@ export function Footer(): JSX.Element {
         <strong>{activeCount}</strong> pending {activeTodoWord}
       </span>
 
-      <Filters
-        filterSelected={filterSelected}
-        handleFilterChange={handleFilterChange}
-      />
+      <Filters />
 
       {completedCount > 0 && (
         <button className="clear-completed" onClick={handleClearCompleted}>

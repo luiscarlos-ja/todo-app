@@ -1,4 +1,5 @@
 import { TODO_FILTERS } from '../consts.js'
+import { useTodos } from '../hooks/useTodos.js'
 import { type FilterValue } from '../types.js'
 
 const FILTERS_BUTTONS = {
@@ -13,15 +14,8 @@ const FILTERS_BUTTONS = {
   }
 } as const
 
-interface Props {
-  handleFilterChange: (filter: FilterValue) => void
-  filterSelected: (typeof TODO_FILTERS)[keyof typeof TODO_FILTERS]
-}
-
-export const Filters: React.FC<Props> = ({
-  filterSelected,
-  handleFilterChange
-}) => {
+export const Filters: React.FC = () => {
+  const { handleFilterChange, filterSelected } = useTodos()
   const handleClick =
     (filter: FilterValue) => (e: React.MouseEvent<HTMLAnchorElement>) => {
       e.preventDefault()
